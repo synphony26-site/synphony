@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symphony - YouTube Downloader</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="icon">⚡</span>
+                <h1>Symphony</h1>
+            </div>
+            <p>Descarga videos y audios de YouTube al instante.</p>
+        </header>
+
+        <main>
+            <div class="input-group">
+                <input type="text" id="urlInput" placeholder="Pega el enlace de YouTube aquí..." autocomplete="off">
+                <button id="fetchBtn" class="btn-primary">
+                    <span class="btn-text">Buscar</span>
+                    <div class="spinner hidden" id="fetchSpinner"></div>
+                </button>
+            </div>
+
+            <div id="errorMsg" class="error-msg hidden"></div>
+
+            <div id="resultCard" class="result-card hidden">
+                <div class="thumbnail-container">
+                    <img id="thumbnail" src="" alt="Miniatura del video">
+                </div>
+                <div class="info-container">
+                    <h2 id="videoTitle">Título del Video</h2>
+                    <div class="actions">
+                        <button class="btn-download video" id="descargarVideoBtn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            Descargar MP4
+                        </button>
+                        <button class="btn-download audio" id="descargarAudioBtn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                            Descargar M4A
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
