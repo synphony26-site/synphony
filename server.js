@@ -20,11 +20,18 @@ app.get('/videoInfo', async (req, res) => {
             url = urlObj.origin + urlObj.pathname + '?v=' + urlObj.searchParams.get('v');
         }
 
-        const info = await youtubedl(url, {
+        const options = {
             dumpSingleJson: true,
             noCheckCertificates: true,
-            noWarnings: true
-        });
+            noWarnings: true,
+            preferFreeFormats: true,
+            forceIpv4: true,
+            addHeader: [
+                'referer:youtube.com',
+                'user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
+            ]
+        };
+        const info = await youtubedl(url, options);
 
         res.json({
             title: info.title,
@@ -47,7 +54,18 @@ app.get('/download', async (req, res) => {
             url = urlObj.origin + urlObj.pathname + '?v=' + urlObj.searchParams.get('v');
         }
 
-        const info = await youtubedl(url, { dumpSingleJson: true, noCheckCertificates: true, noWarnings: true });
+        const options = {
+            dumpSingleJson: true,
+            noCheckCertificates: true,
+            noWarnings: true,
+            preferFreeFormats: true,
+            forceIpv4: true,
+            addHeader: [
+                'referer:youtube.com',
+                'user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
+            ]
+        };
+        const info = await youtubedl(url, options);
         const title = info.title.replace(/[^a-zA-Z0-9\u00C0-\u017F]/g, '_');
 
         if (format === 'mp3') {
@@ -57,7 +75,12 @@ app.get('/download', async (req, res) => {
                 format: 'bestaudio[ext=m4a]/bestaudio',
                 output: '-', // Imprimir al stdout
                 noCheckCertificates: true,
-                noWarnings: true
+                noWarnings: true,
+                forceIpv4: true,
+                addHeader: [
+                    'referer:youtube.com',
+                    'user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
+                ]
             });
             audioStream.stdout.pipe(res);
         } else {
@@ -67,7 +90,12 @@ app.get('/download', async (req, res) => {
                 format: 'best[ext=mp4]/best',
                 output: '-', 
                 noCheckCertificates: true,
-                noWarnings: true
+                noWarnings: true,
+                forceIpv4: true,
+                addHeader: [
+                    'referer:youtube.com',
+                    'user-agent:Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
+                ]
             });
             videoStream.stdout.pipe(res);
         }
