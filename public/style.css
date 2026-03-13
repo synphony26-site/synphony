@@ -23,9 +23,6 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-main);
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     overflow-x: hidden;
     position: relative;
 }
@@ -49,7 +46,9 @@ body {
 .container {
     width: 100%;
     max-width: 600px;
+    margin: 0 auto;
     padding: 2rem;
+    padding-top: 15vh;
     z-index: 1;
 }
 
@@ -288,6 +287,27 @@ input::placeholder {
 }
 
 @media (max-width: 500px) {
+    .container {
+        padding: 1.5rem;
+        padding-top: 8vh;
+    }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .input-group {
+        flex-direction: column;
+        border-radius: 20px;
+        padding: 1rem;
+    }
+    
+    .btn-primary {
+        padding: 1rem;
+        border-radius: 12px;
+        width: 100%;
+    }
+
     .actions {
         grid-template-columns: 1fr;
     }
